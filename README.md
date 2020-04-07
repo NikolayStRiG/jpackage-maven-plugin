@@ -20,3 +20,5 @@ Run:
 `mvn clean install `
 
 Requirit `jpackage.exe` from `java 14`
+
+For Windows you need to install [WiX Toolset](https://wixtoolset.org/)
