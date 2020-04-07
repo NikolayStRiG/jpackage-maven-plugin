@@ -16,3 +16,5 @@ Add plugin
 </plugin>
 ```
 
+Run: 
+`mvn clean install `
