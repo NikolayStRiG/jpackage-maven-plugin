@@ -18,3 +18,5 @@ Add plugin
 
 Run: 
 `mvn clean install `
+
+Requirit `jpackage.exe` from `java 14`
