@@ -13,7 +13,7 @@ import java.util.Arrays;
 /**
  * The class create package
  */
-@Mojo(name = "createpackage", defaultPhase = LifecyclePhase.VALIDATE, threadSafe = true)
+@Mojo(name = "createpackage", defaultPhase = LifecyclePhase.VERIFY, threadSafe = true)
 public class JpackageMojo extends AbstractMojo {
 
     public static final String ERROR_CREATE_PACKAGE = "Error create package";
