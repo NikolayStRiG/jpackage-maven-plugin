@@ -10,16 +10,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static java.lang.System.Logger.Level.ERROR;
-import static java.lang.System.Logger.Level.INFO;
-
 /**
  * The class create package
  */
 @Mojo(name = "createpackage", defaultPhase = LifecyclePhase.VALIDATE, threadSafe = true)
 public class JpackageMojo extends AbstractMojo {
 
-    private System.Logger logger = System.getLogger(JpackageMojo.class.getName());
+    public static final String ERROR_CREATE_PACKAGE = "Error create package";
 
     @Parameter(defaultValue = "${project.build.directory}")
     private File buildDirectory;
@@ -38,18 +35,16 @@ public class JpackageMojo extends AbstractMojo {
             String command  = "jpackage.exe --name " + name + " --input "
                     + path + " --main-jar " + main + " --dest " + dest
                     + " --win-menu --win-shortcut";
-            logger.log(INFO, command);
+            getLog().debug(command);
             Process proc = Runtime.getRuntime().exec(command);
-
-            logger.log(INFO, Arrays.toString(proc.getInputStream().readAllBytes()));
+            getLog().info(Arrays.toString(proc.getInputStream().readAllBytes()));
             proc.waitFor();
             proc.destroy();
         } catch (IOException e) {
-            logger.log(ERROR, "Error create package", e);
+            getLog().error(ERROR_CREATE_PACKAGE, e);
         } catch (InterruptedException e) {
-            logger.log(ERROR, "Error create package", e);
+            getLog().error(ERROR_CREATE_PACKAGE, e);
             Thread.currentThread().interrupt();
         }
-        logger.log(INFO, "End create package");
     }
 }
